@@ -1,0 +1,159 @@
+---
+title: "Experiment title (will not be displayed to users)"
+author: "Your Name"
+date: January 1, 2017
+---
+
+# Introductory text
+
+## Prompt
+
+This text will be displayed before any questions that take user input. Use this to communicate necessary information for the assignment.
+
+
+
+# Question 1
+
+## Question tag
+
+tag1
+
+## Question type
+
+Multiple choice - choose one option
+
+## Prompt
+
+Question prompt for question 1
+
+## Answer choices
+
+a. Choice 1
+b. Choice 2
+c. Choice 3
+d. Choice 4
+e. Choice 5
+
+## Correct answer
+
+c
+
+
+
+# Question 2
+
+## Question tag
+
+tag2
+
+## Question type
+
+Multiple choice - choose one option
+
+## Answer choices
+
+a. Choice 1 - common to all versions
+b. Choice 2 - common to all versions
+c. Choice 3 - common to all versions
+d. Choice 4 - common to all versions
+e. Choice 5 - common to all versions
+
+## Variation 1
+
+### Prompt
+
+Question prompt for question 2 - variation 1
+
+## Variation 2
+
+### Prompt
+
+Question prompt for question 2 - variation 2
+
+
+
+# Question 3
+
+## Question tag
+
+tag3
+
+## Question type
+
+Text answer - short
+
+## Prompt
+
+Question prompt for question 3
+
+## Correct answer
+
+Explanation for question 3
+
+
+
+# Question 4
+
+## Question tag
+
+tag4
+
+## Question type
+
+Text answer - long
+
+## Prompt
+
+Question prompt for question 4
+
+## Correct answer
+
+Explanation for question 4
+
+
+
+# Question 5
+
+## Question tag
+
+tag5
+
+## Question type
+
+Numeric answer
+
+## Prompt
+
+Question prompt for question 5
+
+## Correct answer
+
+Explanation for question 5
+
+
+
+# Question 5
+
+## Question tag
+
+tag5
+
+## Question type
+
+File input
+
+## Prompt
+
+Question prompt for question 5
+
+## Correct answer
+
+Explanation for question 5
+
+
+
+# Simulation and scratch code (PARSER IGNORE BELOW)
+
+```{r}
+# Code used to generate simulated datasets
+```

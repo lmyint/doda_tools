@@ -1,0 +1,73 @@
+Guide to formatting experiments with the Rmd template
+
+Overview
+--------
+An Rmd file for an experiment completely specifies the HTML that will be used to render your experiment and all of its variations (arms) within the DoDA app. The following level 1 headings divide the file into its major parts:
+
+1. Introductory text
+2. Question 1
+...
+N+1. Question N
+N+2. Simulation and scratch code (PARSER IGNORE BELOW)
+
+The introductory text section is optional but at least one question section is required to specify some sort of input from the user. The rest of this document provides details on these sections.
+
+
+Introductory text
+-----------------
+The introductory text section is optional but almost always needed to setup the prompt for the assignment. It contains information regarding the problem background and dataset descriptions.
+
+The second level headings should be titled "Prompt" if only using one variation or "Prompt #" if using multiple variations (where # ranges from 1 to the number of variations). These sections should only contain the (versions of) introductory text. This text can be written in Markdown.
+
+
+Question #
+----------
+The question sections should be titled "Question 1", "Question 2", etc. Second and third level headings define the structure of these questions.
+
+The following sections can be included to specify a question and can included as a second or third level heading:
+
+1. Question tag (required)
+2. Question type (required)
+3. Prompt (required)
+4. Answer choices (required only if question type is multiple choice)
+5. Correct answer (optional)
+
+If any of these are included as a second level heading, they will be treated as being common to all variations (possibly only one) of this question. If they are included as third level headings, they will be specfic to a particular variation of the question.
+
+Question tag:
+Under this heading, include a descriptive identifier for this question as a string with no spaces (e.g. initial_decision, estimate_unweighted, estimate_weighted). This tag is used to map user responses to this question. For example, if this question asks for the user's unweighted estimate of the mean and the question tag supplied is estimate_unweighted, the file storing the respones for this experiment will contain a column titled estimate_unweighted containing the unweighted estimates entered by each user.
+
+Question types permitted:
+1. Multiple choice - choose one option
+2. Multiple choice - choose many options
+3. Text answer - short
+4. Text answer - long
+5. Numeric answer
+6. File input
+
+Details on question types:
+1. Multiple choice - choose one option
+   Users will only be able to select one option.
+2. Multiple choice - choose many options
+   Users will be able to select multiple options.
+3. Text answer - short
+   Display a text input field that spans only a single line.
+4. Text answer - long
+   Display a text input field that spans multiple lines.
+5. Numeric answer
+   Display a numeric input field.
+6. File input
+   Display a file upload field.
+
+Prompt:
+Under this heading, include the text that will appear before the input field.
+
+Answer choices:
+Under this heading, include as a numbered list the options to be displayed.
+
+Correct answer:
+Under this heading, include the correct answers or samples responses for the question. This section is optional but recommended. You can refer back to these correct answers when analyzing user responses for your experiment.
+
+Simulation and scratch code (PARSER IGNORE BELOW)
+-------------------------------------------------
+This section contains standard RMarkdown code chunks and text containing your scratch work and notes for this assignment. This can include code to generate simulated datasets, create exploratory plots, and fit models. Nothing in this section will be used in creating the HTML used to display the assignment to the user.
