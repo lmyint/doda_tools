@@ -132,11 +132,11 @@ Explanation for question 5
 
 
 
-# Question 5
+# Question 6
 
 ## Question tag
 
-tag5
+tag6
 
 ## Question type
 
@@ -144,11 +144,11 @@ File input
 
 ## Prompt
 
-Question prompt for question 5
+Question prompt for question 6
 
 ## Correct answer
 
-Explanation for question 5
+Explanation for question 6
 
 
 
