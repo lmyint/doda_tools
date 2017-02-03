@@ -43,4 +43,5 @@ server <- function(input, output, session) {
     })
 }
 
-shinyApp(ui = ui, server = server)
+app <- shinyApp(ui = ui, server = server)
+print(app)
