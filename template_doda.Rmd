@@ -28,11 +28,11 @@ Question prompt for question 1
 
 ## Answer choices
 
-a. Choice 1
-b. Choice 2
-c. Choice 3
-d. Choice 4
-e. Choice 5
+Choice 1
+Choice 2
+Choice 3
+Choice 4
+Choice 5
 
 ## Correct answer
 
