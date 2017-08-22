@@ -10,6 +10,20 @@ parseExperimentRmd <- function(file) {
     linesBySection <- separateBy(lines, pattern = "^# ")
     ## Each element of uiList is a single UI (if that section is not randomized)
     uiListBySection <- lapply(linesBySection, parseSection)
+    ## Extract tools and skills
+    bool_skills <- uiListBySection=="skills"
+    if (any(bool_skills)) {
+        skills <- attr(uiListBySection[[which(bool_skills)]], "skills")
+    } else {
+        skills <- c()
+    }
+    bool_tools <- uiListBySection=="tools"
+    if (any(bool_tools)) {
+        tools <- attr(uiListBySection[[which(bool_tools)]], "tools")
+    } else {
+        tools <- c()
+    }
+    uiListBySection <- uiListBySection[!bool_skills & !bool_tools]
     ## Create a list where each element is the full UI for one variation of the experiment
     combos <- expand.grid(lapply(lengths(uiListBySection), seq_len))
     uiList <- lapply(seq_len(nrow(combos)), function(i) {
@@ -17,25 +31,36 @@ parseExperimentRmd <- function(file) {
             index <- combos[i,j]
             uiListBySection[[j]][[index]]
         })
-        tagList(tl)
+        tagList(tl, actionButton("submit_experiment", "Submit"))
     })
+    attr(uiList, "skills") <- skills
+    attr(uiList, "tools") <- tools
     return(uiList)
 }
 
 parseSection <- function(lines) {
-    isIntro <- length(grep("Introductory text", lines[1], ignore.case = TRUE)) > 0
-    isQuestion <- length(grep("Question", lines[1], ignore.case = TRUE)) > 0
-    if (isIntro) {
+    is_intro <- length(grep("Introductory text", lines[1], ignore.case = TRUE)) > 0
+    is_question <- length(grep("Question", lines[1], ignore.case = TRUE)) > 0
+    is_skills <- length(grep("Skills", lines[1], ignore.case = TRUE)) > 0
+    is_tools <- length(grep("Tools", lines[1], ignore.case = TRUE)) > 0
+    if (is_intro) {
         linesInPrompts <- separateBy(lines, pattern = "# Prompt")
         ## List of HTML strings: one list element per version
         ui <- lapply(linesInPrompts, function(promptLines) {
             tags$div(HTML(markdownToHTML(text = tail(promptLines, -1), fragment.only = TRUE)))
         })
-        # ui <- p("Foo bar")
-    } else if (isQuestion) {
+    } else if (is_question) {
         ## If only 1 version, separate lines by level 2 headings
         linesBySection <- separateBy(lines, pattern = "^## ")
         ui <- parseQuestion(linesBySection)
+    } else if (is_skills) {
+        skills <- strsplit(lines[2], ",")[[1]]
+        ui <- "skills"
+        attr(ui, "skills") <- skills
+    } else if (is_tools) {
+        tools <- strsplit(lines[2], ",")[[1]]
+        ui <- "tools"
+        attr(ui, "tools") <- tools
     }
     return(ui)
 }
