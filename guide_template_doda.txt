@@ -2,15 +2,76 @@ Guide to formatting experiments with the Rmd template
 
 Overview
 --------
-An Rmd file for an experiment completely specifies the HTML that will be used to render your experiment and all of its variations (arms) within the DoDA app. The following level 1 headings divide the file into its major parts:
+An Rmd file for an experiment completely specifies the HTML that will be used to render your experiment and all of its variations (arms) within the DoDA app. The YAML heading at the top is not used in the display of the assignment to users. It is used for your own organization. The following level 1 headings divide the file into its major parts:
 
-1. Introductory text
-2. Question 1
+1. Skills
+2. Tools
+3. GitHub packages
+4. CRAN/Bioconductor packages
+5. Introductory text
+6. Question 1
 ...
-N+1. Question N
-N+2. Simulation and scratch code (PARSER IGNORE BELOW)
+N+5. Question N
+N+6. Simulation and scratch code (PARSER IGNORE BELOW)
 
-The introductory text section is optional but at least one question section is required to specify some sort of input from the user. The rest of this document provides details on these sections.
+The rest of this document provides details on these sections.
+
+
+Skills
+------
+
+On a single line, provide a comma-separated list of the statistical/analytical concepts needed to complete the assignment. Choose from the following (keep the same spelling - copying and pasting is recommended):
+
+Exploratory plotting
+Linear regression
+Logistic regression
+Generalized linear models
+Bayesian inference
+Time series analysis
+Longitudinal data analysis
+Survey analysis
+Survival analysis
+Matrix decomposition
+Clustering
+Multiple testing
+Machine learning
+
+Example:
+Exploratory plotting, Linear regression
+
+
+Tools
+-----
+
+On a single line, provide a comma-separated list of the technical tools needed to complete the assignment. Choose from the following (keep the same spelling - copying and pasting is recommended):
+
+R Markdown
+R Notebooks
+tidyverse
+ggplot2
+
+Example:
+tidyverse, R Markdown
+
+
+GitHub packages
+---------------
+
+On a single line, provide a comma-separated list of the GitHub packages needed to complete the assignment. Specify them with the username and repository name as:
+
+github_username/name_of_package_repo
+
+Example:
+MarkEdmondson1234/googleID
+
+
+CRAN/Bioconductor packages
+--------------------------
+
+On a single line, provide a comma-separated list of the CRAN and Bioconductor packages needed to complete the assignment.
+
+Example:
+matrixStats, party
 
 
 Introductory text
@@ -70,4 +131,4 @@ Under this heading, include the correct answers or samples responses for the que
 
 Simulation and scratch code (PARSER IGNORE BELOW)
 -------------------------------------------------
-This section contains standard Rmarkdown code chunks and text containing your scratch work and notes for this assignment. This can include code to generate simulated datasets, create exploratory plots, and fit models. Nothing in this section will be used in creating the HTML used to display the assignment to the user.
+This section contains standard Rmarkdown code chunks and text containing your scratch work and notes for this assignment. Among other things, this can include code to generate simulated datasets, create exploratory plots, and fit models. Nothing in this section will be used in creating the HTML used to display the assignment to the user.

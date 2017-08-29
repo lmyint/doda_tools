@@ -4,6 +4,18 @@ author: "Your Name"
 date: January 1, 2017
 ---
 
+# Skills
+
+Exploratory plotting, Logistic regression
+
+# Tools
+
+tidyverse
+
+# GitHub packages
+
+# CRAN/Bioconductor packages
+
 # Introductory text
 
 ## Prompt

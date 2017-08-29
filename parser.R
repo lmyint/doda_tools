@@ -23,7 +23,24 @@ parseExperimentRmd <- function(file) {
     } else {
         tools <- c()
     }
-    uiListBySection <- uiListBySection[!bool_skills & !bool_tools]
+    ## Extract packages
+    ### GitHub
+    bool_git_pack <- uiListBySection=="git_packages"
+    if (any(bool_git_pack)) {
+        git_packages <- attr(uiListBySection[[which(bool_git_pack)]], "git_packages")
+    } else {
+        git_packages <- c()
+    }
+    ### CRAN/BioC
+    bool_cran_bioc_pack <- uiListBySection=="cran_bioc_packages"
+    if (any(bool_cran_bioc_pack)) {
+        cran_bioc_packages <- attr(uiListBySection[[which(bool_cran_bioc_pack)]], "cran_bioc_packages")
+    } else {
+        cran_bioc_packages <- c()
+    }
+
+    uiListBySection <- uiListBySection[!bool_skills & !bool_tools & !bool_git_pack & !bool_cran_bioc_pack]
+
     ## Create a list where each element is the full UI for one variation of the experiment
     combos <- expand.grid(lapply(lengths(uiListBySection), seq_len))
     uiList <- lapply(seq_len(nrow(combos)), function(i) {
@@ -35,6 +52,9 @@ parseExperimentRmd <- function(file) {
     })
     attr(uiList, "skills") <- skills
     attr(uiList, "tools") <- tools
+    attr(uiList, "git_packages") <- git_packages
+    attr(uiList, "cran_bioc_packages") <- cran_bioc_packages
+    
     return(uiList)
 }
 
@@ -43,6 +63,8 @@ parseSection <- function(lines) {
     is_question <- length(grep("Question", lines[1], ignore.case = TRUE)) > 0
     is_skills <- length(grep("Skills", lines[1], ignore.case = TRUE)) > 0
     is_tools <- length(grep("Tools", lines[1], ignore.case = TRUE)) > 0
+    is_git_pack <- length(grep("GitHub packages", lines[1], ignore.case = TRUE)) > 0
+    is_cran_bioc_pack <- length(grep("CRAN/Bioconductor packages", lines[1], ignore.case = TRUE)) > 0
     if (is_intro) {
         linesInPrompts <- separateBy(lines, pattern = "# Prompt")
         ## List of HTML strings: one list element per version
@@ -54,13 +76,37 @@ parseSection <- function(lines) {
         linesBySection <- separateBy(lines, pattern = "^## ")
         ui <- parseQuestion(linesBySection)
     } else if (is_skills) {
-        skills <- strsplit(lines[2], ",")[[1]]
+        if (length(lines) >= 2) {
+            skills <- trimws(strsplit(lines[2], ",")[[1]])
+        } else {
+            skills <- ""
+        }
         ui <- "skills"
         attr(ui, "skills") <- skills
     } else if (is_tools) {
-        tools <- strsplit(lines[2], ",")[[1]]
+        if (length(lines) >= 2) {
+            tools <- trimws(strsplit(lines[2], ",")[[1]])
+        } else {
+            tools <- ""
+        }
         ui <- "tools"
         attr(ui, "tools") <- tools
+    } else if (is_git_pack) {
+        if (length(lines) >= 2) {
+            git_packages <- trimws(strsplit(lines[2], ",")[[1]])
+        } else {
+            git_packages <- ""
+        }
+        ui <- "git_packages"
+        attr(ui, "git_packages") <- git_packages
+    } else if (is_cran_bioc_pack) {
+        if (length(lines) >= 2) {
+            cran_bioc_packages <- trimws(strsplit(lines[2], ",")[[1]])
+        } else {
+            cran_bioc_packages <- ""
+        }
+        ui <- "cran_bioc_packages"
+        attr(ui, "cran_bioc_packages") <- cran_bioc_packages
     }
     return(ui)
 }
