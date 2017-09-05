@@ -64,11 +64,11 @@ Multiple choice - choose one option
 
 ## Answer choices
 
-a. Choice 1 - common to all versions
-b. Choice 2 - common to all versions
-c. Choice 3 - common to all versions
-d. Choice 4 - common to all versions
-e. Choice 5 - common to all versions
+Choice 1 - common to all versions
+Choice 2 - common to all versions
+Choice 3 - common to all versions
+Choice 4 - common to all versions
+Choice 5 - common to all versions
 
 ## Variation 1
 
@@ -157,10 +157,6 @@ File input
 ## Prompt
 
 Question prompt for question 6
-
-## Correct answer
-
-Explanation for question 6
 
 
 
